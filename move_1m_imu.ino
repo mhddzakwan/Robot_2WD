@@ -127,15 +127,9 @@ void loop() {
     // --- LOGIKA KOREKSI DINAMIS ---
     float errorSudut = headingYaw; 
     float koreksi = errorSudut * Kp_IMU;
-
-    // JIKA MOTOR KIRI MASIH TERLALU CEPAT, balik tanda di bawah ini:
-    // Opsi A (Bawaan saat ini):
+    
     speedKiri  = BASE_PWM - koreksi; 
     speedKanan = BASE_PWM + koreksi;
-
-    // Opsi B (Gunakan jika Opsi A justru membuat robot makin berbelok ke kanan):
-    // speedKiri  = BASE_PWM - koreksi;
-    // speedKanan = BASE_PWM + koreksi;
 
     // Batasi nilai PWM ke range aman
     speedKiri  = constrain(speedKiri, 50, 200);
